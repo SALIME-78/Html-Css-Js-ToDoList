@@ -64,10 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             deleteBtn.addEventListener('click', () => {
-                li.style.opacity = 0;
-                li.style.height = '0';
-                li.style.marginBottom = '0';
+
+                const confirmDelete = confirm('Are you sure you want to delete this task?');
+                if (!confirmDelete) {
+                    alert('Action canceled');
+                    return;
+                }
                 setTimeout(() => {
+                    li.style.opacity = 0;
+                    li.style.height = '0';
+                    li.style.marginBottom = '0';
                     tasks.splice(index, 1);
                     saveTasks();
                     renderTasks();
